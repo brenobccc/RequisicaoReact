@@ -24,24 +24,17 @@ function App() {
         post.map((e) => {
 
           const pokeNumber = e.url.split('pokemon')[1].replaceAll('/','')
+          const pokeName = e.name
           console.log(pokeNumber)
           const urlFoto = 'https://raw.githubusercontent.com/wellrccity/pokedex-html-js/refs/heads/master/assets/img/pokemons/poke_'+pokeNumber+'.gif'
-          // const sitePoke = 'https://www.pokemon.com/br/pokedex/'+pokeNumber
+          const sitePoke = 'https://www.pokemon.com/br/pokedex/'+pokeNumber
           return (
-            <div style={{
-              width: '300px',
-              height: '300px',
-              backgroundColor: 'orange',
-              margin: '5px'
-            }}>
+            <div>
               <h4>
-                {pokeNumber}
+                {pokeNumber}-<b>{pokeName}</b>
               </h4>
               {/* <a href={sitePoke}>poke</a> */}
-              <img src={urlFoto} style={{
-                width: '40%',
-                position: 'cover'
-              }}></img>
+              <img src={urlFoto}></img>
             </div>
           )
         })

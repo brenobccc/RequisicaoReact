@@ -1,0 +1,26 @@
+body{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.App{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: aqua;
+    justify-content: center;
+}
+
+.App div {
+    height: 400px;
+    width: 200px;
+    background-color: rgb(255, 234, 151);
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+img{
+    background-size: auto;
+}
