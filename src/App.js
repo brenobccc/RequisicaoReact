@@ -5,9 +5,13 @@ import axios from "axios";
 
 
 function App() {
+  let BackgroundAudio = new Audio("zelda_song.mp3");
+  BackgroundAudio.loop = true;
+  BackgroundAudio.muted = true;
+
   const [post, setPost] = useState([])
   const qtdPoke = 706
-  const baseURL = 'https://pokeapi.co/api/v2/pokemon?limit='+qtdPoke
+  const baseURL = 'https://pokeapi.co/api/v2/pokemon?limit=' + qtdPoke
 
   useEffect(() => {
     axios.get(baseURL).then((response) => {
@@ -23,13 +27,29 @@ function App() {
       {
         post.map((e) => {
 
-          const pokeNumber = e.url.split('pokemon')[1].replaceAll('/','')
+          const pokeNumber = e.url.split('pokemon')[1].replaceAll('/', '')
           const pokeName = e.name
           console.log(pokeNumber)
-          const urlFoto = 'https://raw.githubusercontent.com/wellrccity/pokedex-html-js/refs/heads/master/assets/img/pokemons/poke_'+pokeNumber+'.gif'
-          const sitePoke = 'https://www.pokemon.com/br/pokedex/'+pokeNumber
+          const urlFoto = 'https://raw.githubusercontent.com/wellrccity/pokedex-html-js/refs/heads/master/assets/img/pokemons/poke_' + pokeNumber + '.gif'
+          const sitePoke = 'https://www.pokemon.com/br/pokedex/' + pokeNumber
           return (
-            <div>
+            <div onClick={() => {
+              alert("clicou")
+              const isMutted = BackgroundAudio.muted
+              console.log(isMutted)
+
+              if (isMutted) {
+                BackgroundAudio = new Audio("zelda_song.mp3");
+                BackgroundAudio.muted = false;
+                BackgroundAudio.play().catch((e) => {
+                  console.log("Falha ao reproduzir o áudio:", e);
+                });
+              }else{
+                BackgroundAudio.muted = true;
+              }
+
+
+            }}>
               <h4>
                 {pokeNumber}-<b>{pokeName}</b>
               </h4>
